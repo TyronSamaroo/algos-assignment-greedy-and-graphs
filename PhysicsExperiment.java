@@ -37,7 +37,74 @@ public class PhysicsExperiment {
     // in the table in the right places based on the return description
     int[][] scheduleTable = new int[numStudents + 1][numSteps + 1];
 
+
     // Your code goes here
+//int[][] signUpsExperiment1 = {{1, 2, 3, 5}, {2, 3, 4}, {1, 4, 5, 6}};
+//    int currentStep = 1;
+//    while(currentStep < numSteps){
+//
+//      int maxStepCounter = 0;
+//
+//      for (int i = 1; i <= numStudents ; i++) {
+//        int updatedCounter = 0;
+//        for (int j = 1; j <=numSteps ; j++) {
+//
+//          if(signUpTable[i][j] == 1){
+//            maxStepCounter = maxStepCounter + 1;
+//
+//            if(maxStepCounter > updatedCounter){
+//              updatedCounter = maxStepCounter;
+//              scheduleTable[i][j] = 1;
+//              numSteps--;
+//            }
+//
+//          }
+//          else if(signUpTable[i][j] == 0){
+//            j = i;
+//
+//            // I dont want start over steps... so
+//
+//          }
+//      }
+//    }
+    int currentStep = 1;
+
+    while (currentStep < numSteps) {
+
+      int maxStepCounter = 0;
+      int bestStudent = 1;
+
+
+      // I want the bestStudent that has most consec steps starting from currentStep
+      for (int i = 1; i <= numStudents; i++) {
+        int currentStepCounter = 0;
+        for (int j = 1; j <= numSteps; j++) {
+          if (signUpTable[i-1][j-1] == 1) {
+            currentStepCounter++;
+            if (currentStepCounter > maxStepCounter) {
+              maxStepCounter = currentStepCounter;
+              bestStudent = i;
+            }
+          } else
+            i++;
+        }
+
+      }
+
+
+      // At this point we schedule from step 1 up to K number consec steps. I schedule all
+      // step a student can take based on student that can do maxStep
+      for (int i = currentStep; i < maxStepCounter; i++) {
+        scheduleTable[bestStudent][i] = 1;
+      }
+
+      // update to update table for rest of steps needed
+      currentStep += maxStepCounter;
+
+    }
+
+
+
 
     return scheduleTable;
   }
@@ -152,6 +219,7 @@ public class PhysicsExperiment {
 
     // Experiment 1: Example 1 from README, 3 students, 6 steps:
     int[][] signUpsExperiment1 = {{1, 2, 3, 5}, {2, 3, 4}, {1, 4, 5, 6}};
+
     pe.makeExperimentAndSchedule(1, 3, 6, signUpsExperiment1);
 
     // Experiment 2: Example 2 from README, 4 students, 8 steps
@@ -161,5 +229,6 @@ public class PhysicsExperiment {
     // Experiment 3: Another test case, 5 students, 11 steps
     int[][] signUpsExperiment3 = {{7, 10, 11}, {8, 9, 10}, {2, 3, 4, 5, 7}, {1, 5, 6, 7, 8}, {1, 3, 4, 8}};
     pe.makeExperimentAndSchedule(3, 5, 11, signUpsExperiment3);
+
   }
 }
