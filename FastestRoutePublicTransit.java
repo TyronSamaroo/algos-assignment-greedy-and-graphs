@@ -35,8 +35,51 @@ public class FastestRoutePublicTransit {
     int[][] first,
     int[][] freq
   ) {
+
     // Your code along with comments here. Feel free to borrow code from any
     // of the existing method. You can also make new helper methods.
+
+    // I am using Dijkstra’s shortest path algorithm
+    // This is the number of stations.
+    int stations = lengths[0].length;
+
+    // This will keep track if path is updated correctly set true if not false;
+    Boolean[] updatedPath = new Boolean[stations];
+    int[] optimalTime = new int[stations];
+
+    // Intialize all stations path to infinity. It will be updated later for best
+    // solution. Also I will set the updatedPath values to all false
+    for (int i = 0; i < stations; i++) {
+      updatedPath[i] = false;
+      optimalTime[i] = Integer.MAX_VALUE;
+    }
+
+    // the first positon is starttime. This is already updated in time.
+    optimalTime[0] = startTime;
+
+
+
+    // Finding the shortest path.
+    for (int i = 0; i < stations - 1; i++) {
+
+      int find = findNextToProcess(optimalTime,updatedPath);
+      updatedPath[find] = true;
+
+      // I update all the paths stemming from each station
+      for (int j = 0; j < stations; j++) {
+
+
+      }
+
+
+
+
+    }
+
+
+
+
+
     return 0;
   }
 
@@ -74,6 +117,7 @@ public class FastestRoutePublicTransit {
    */
   public void shortestTime(int graph[][], int source) {
     int numVertices = graph[0].length;
+
 
     // This is the array where we'll store all the final shortest times
     int[] times = new int[numVertices];

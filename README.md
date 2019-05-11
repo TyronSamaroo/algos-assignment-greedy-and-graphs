@@ -8,7 +8,7 @@ First, instructions which you MUST follow exactly:
 * Please submit something that COMPILES. If you know your code does not compile without commenting things out, make sure you are commenting in your code adequately to make up for that.
 * Put your writeups + drawings to the problems in <b>*ONE* pdf file titled Your_Full_Name_Greedy_Graphs_Writeup.pdf</b> in this same directory. You must include this write-up (even if it's blank) because otherwise I will have to ask you about it. Please type if you can, and present it neatly. Clearly label which question you are answering.
 * In the write-up, if you collaborated with anybody in the class or used an online source for any inspiration, please list who you worked with or cite the source. You must do this.
-* The only files you should be updating are the java files and adding your one write-up PDF. There should be no other files.
+* Th******e only files you should be updating are the java files and adding your one write-up PDF. There should be no other files.
 * From your account, select "Create a pull request" where the base is this account's (CS-Queens-College-Yao) repository.
 * created a pull request from your fork to this original version
 * Submit your PR link via this Google form: https://forms.gle/KaHQf7FMQxWC2ZnXA
@@ -52,7 +52,9 @@ It's 2009 and you are staying in Oak City for the summer. Because of its history
 * first(e)>= 0 the first train of the day that passes through u to v
 * freq(e) > 0 how frequently the train comes from u to v
 
-So the train passes through that a station at first(e), first(e) + freq(e), first(e) + 2freq(e), and so on... Transfers are also super efficient because the platforms are well designed. So you can assume that as soon as you arrive at somewhere to get off, <b>if</b> your transfer train arrives at the same time you can catch it. <br> With your copy of the map, you store the data in files and want to make an API that'll tell you the shortest time it takes to get from a station S to station T at a certain starting time. Since you are the only one using the API, you just care about getting places from a single starting station. For the API, you'll design an algorithm. You don't care how many transfers you have to make.
+So the train passes through that a station at first(e), first(e) + freq(e), first(e) + 2freq(e), and so on... 
+Transfers are also super efficient because the platforms are well designed. S
+****o you can assume that as soon as you arrive at somewhere to get off, <b>if</b> your transfer train arrives at the same time you can catch it. <br> With your copy of the map, you store the data in files and want to make an API that'll tell you the shortest time it takes to get from a station S to station T at a certain starting time. Since you are the only one using the API, you just care about getting places from a single starting station. For the API, you'll design an algorithm. You don't care how many transfers you have to make.
 
 <b>Given</b>: starting time X minutes from 5:30am, station S, station T, three adjacency matrices (one for length(e), another for first(e), another for freq(e)). The first(e) adjacency matrix could just contain the first arrival time as number of minutes from 5:30am, so 6:01am would be 31.<br>
 <b>Goal</b>: Find the shortest time it would take to get from S to T.
