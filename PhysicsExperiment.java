@@ -204,5 +204,26 @@ public class PhysicsExperiment {
     int[][] signUpsExperiment3 = {{7, 10, 11}, {8, 9, 10}, {2, 3, 4, 5, 7}, {1, 5, 6, 7, 8}, {1, 3, 4, 8}};
     pe.makeExperimentAndSchedule(3, 5, 11, signUpsExperiment3);
 
+//
+//    // Worst case all student has to be schedule;
+//    int[][] signUpsExperiment4 = {{1},{2},{3},{4},{5},{6},{7},{8},{9},{10}};
+//    pe.makeExperimentAndSchedule(4,10,10,signUpsExperiment4);
+//
+//    // Repeated Steps. It schedules the first and last since those have all steps.
+//    int[][] signUpsExperiment5 = {{1,2,3,4,5},{2,10},{3},{4},{1,2,3,4,5},{2,3,4,5,6},{7},{8},{9},{6,7,8,9,10}};
+//    pe.makeExperimentAndSchedule(5,10,10,signUpsExperiment5);
+//
+//    // It works if i put 0.
+//    int[][] signUpsExperiment6 = {{0},{0},{0},{0},{0},{0},{1,2}};
+//    pe.makeExperimentAndSchedule(6,7,2,signUpsExperiment6);
+//
+//    // Invalid since I dont have students who can do other steps.
+//    int[][] signUpsExperiment7 = {{0},{0},{0},{0},{0},{0},{1,2}};
+//    pe.makeExperimentAndSchedule(7,3,5,signUpsExperiment7);
+//
+
+
+
+
   }
 }
