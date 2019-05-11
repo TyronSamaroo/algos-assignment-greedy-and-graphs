@@ -1,6 +1,6 @@
 /**
  * Physics Experiment
- * Author: Your Name and Carolyn Yao
+ * Author: Tyron Samaroo and Carolyn Yao
  * Does this compile or finish running within 5 seconds? Y/N
  */
 
@@ -38,6 +38,7 @@ public class PhysicsExperiment {
     int[][] scheduleTable = new int[numStudents + 1][numSteps + 1];
 
 
+
     // Your code goes here
 //int[][] signUpsExperiment1 = {{1, 2, 3, 5}, {2, 3, 4}, {1, 4, 5, 6}};
 //    int currentStep = 1;
@@ -67,44 +68,76 @@ public class PhysicsExperiment {
 //          }
 //      }
 //    }
-    int currentStep = 1;
+    for (int i = 0; i <=numStudents; i++) {
+      for (int j = 0; j <=numSteps; j++) {
+        System.out.print(signUpTable[i][j]);
 
+      }
+      System.out.println();
+
+    }
+    int currentStep = 1;
+    // 4 sudent 8 steps
+   // int[][] signUpsExperiment2 = {{5, 7, 8}, {2, 3, 4, 5, 6}, {1, 5, 7, 8}, {1, 3, 4, 8}};
     while (currentStep < numSteps) {
+      System.out.println("Current step at the beginning " + currentStep);
+      System.out.println("To max step " + numSteps);
 
       int maxStepCounter = 0;
-      int bestStudent = 1;
+      int bestStudent = 0;
+     // System.out.println(numStudents);
+      int originalCurrentStep;
+      originalCurrentStep = currentStep;
 
-
+      //int[][] signUpsExperiment1 = {{1, 2, 3, 5}, {2, 3, 4}, {1, 4, 5, 6}};
       // I want the bestStudent that has most consec steps starting from currentStep
+
       for (int i = 1; i <= numStudents; i++) {
         int currentStepCounter = 0;
-        for (int j = 1; j <= numSteps; j++) {
-          if (signUpTable[i-1][j-1] == 1) {
-            currentStepCounter++;
-            if (currentStepCounter > maxStepCounter) {
-              maxStepCounter = currentStepCounter;
-              bestStudent = i;
-            }
-          } else
+        for (int j = currentStep; j <= numSteps; j++) {
+          // System.out.println("The student is" + i + "This is sign up table" + signUpTable[i][j]);
+          if( i == j){currentStepCounter = 0;}
+          if (signUpTable[i][j] == 1) {
+
+            currentStepCounter = currentStepCounter + 1;
+          }
+          if (currentStepCounter > maxStepCounter) {
+            maxStepCounter = currentStepCounter;
+            bestStudent = i;
+          }
+          if (signUpTable[i][j] == 0) {
             i++;
+            j = originalCurrentStep - 1;
+            currentStepCounter = 0;
+
+            if (i > numStudents) break;
+          }
         }
-
       }
+      System.out.println( "Best student is " + bestStudent + " Max STEP " + maxStepCounter);
 
-
+      // int[][] signUpsExperiment2 = {{5, 7, 8}, {2, 3, 4, 5, 6}, {1, 5, 7, 8}, {1, 3, 4, 8}};
       // At this point we schedule from step 1 up to K number consec steps. I schedule all
       // step a student can take based on student that can do maxStep
-      for (int i = currentStep; i < maxStepCounter; i++) {
+      for (int i = currentStep; i < currentStep + maxStepCounter; i++) {
+
+
         scheduleTable[bestStudent][i] = 1;
       }
-
       // update to update table for rest of steps needed
-      currentStep += maxStepCounter;
+
+      currentStep = currentStep + maxStepCounter;
 
     }
 
 
-
+//    for (int i = 0; i < numStudents; i++) {
+//      for (int j = 0; j < numSteps; j++) {
+//        System.out.print(scheduleTable[i][j]);
+//
+//      }
+//      System.out.println();
+//    }
 
     return scheduleTable;
   }

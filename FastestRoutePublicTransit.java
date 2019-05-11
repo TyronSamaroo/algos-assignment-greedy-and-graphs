@@ -1,11 +1,11 @@
 /**
  * Public Transit
- * Author: Your Name and Carolyn Yao
+ * Author: Tyron Samaroo and Carolyn Yao
  * Does this compile? Y/N
  */
 
 
-// Tyron Samaroo
+
 
 /**
  * This class contains solutions to the Public, Public Transit problem in the
