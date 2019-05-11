@@ -266,7 +266,7 @@ public class FastestRoutePublicTransit {
     // This if start all 0 and no frequency.
     // As long as my start and freq all 0 I will return same as the other
     System.out.println("Starting from source 0");
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i <= 8; i++) {
 
       int shortestTravelTime = t.myShortestTravelTime(0, i, 0, lengthTimeGraph,freq1,freq1);
       System.out.println("Shortest Travel " + i + ": " + shortestTravelTime + " minutes");
