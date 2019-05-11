@@ -1,7 +1,7 @@
 /**
  * Public Transit
  * Author: Tyron Samaroo and Carolyn Yao
- * Does this compile? Y/N
+ * Does this compile? Y
  */
 
 
@@ -44,44 +44,66 @@ public class FastestRoutePublicTransit {
     int stations = lengths[0].length;
 
     // This will keep track if path is updated correctly set true if not false;
-    Boolean[] updatedPath = new Boolean[stations];
+    Boolean[] visitedList = new Boolean[stations];
     int[] optimalTime = new int[stations];
 
     // Intialize all stations path to infinity. It will be updated later for best
     // solution. Also I will set the updatedPath values to all false
     for (int i = 0; i < stations; i++) {
-      updatedPath[i] = false;
+      visitedList[i] = false;
       optimalTime[i] = Integer.MAX_VALUE;
     }
 
+
     // the first positon is starttime. This is already updated in time.
-    optimalTime[0] = startTime;
+    optimalTime[S] = 0;
 
 
 
     // Finding the shortest path.
     for (int i = 0; i < stations - 1; i++) {
 
-      int find = findNextToProcess(optimalTime,updatedPath);
-      updatedPath[find] = true;
+      int vStart = findNextToProcess(optimalTime,visitedList);
+      visitedList[vStart] = true;
+
+      int waiting = 0;
 
       // I update all the paths stemming from each station
-      for (int j = 0; j < stations; j++) {
+      for (int vEnd = 0; vEnd < stations; vEnd++) {
+//
+//        int lengthEdge = lengths[vStart][vEnd];
+//
+//
+//        int currTime = optimalTime[vStart] + startTime;
+//        int frequence = freq[vStart][vEnd];
+        if (optimalTime[vStart] > first[vStart][vEnd] && freq[vStart][vEnd] == 0) {
 
+          waiting = optimalTime[vStart] + lengths[vStart][vEnd];
+
+
+        }
+        else{
+          waiting =lengths[vStart][vEnd] + first[vStart][vEnd];
+        }
+
+
+        // If I didnt visit an vStart and if there exist and edge
+        // and the length is smaller than value at the vStart update
+        if (!visitedList[vEnd] && lengths[vStart][vEnd] != 0 && optimalTime[vStart] != Integer.MAX_VALUE
+                && waiting < optimalTime[vEnd]) {
+          optimalTime[vEnd] = waiting;
+        }
 
       }
 
+      }
 
-
-
-    }
-
-
-
-
-
-    return 0;
+      return optimalTime[T] - startTime;
   }
+
+
+
+
 
   /**
    * Finds the vertex with the minimum time from the source that has not been
@@ -172,5 +194,97 @@ public class FastestRoutePublicTransit {
     t.shortestTime(lengthTimeGraph, 0);
 
     // You can create a test case for your implemented method for extra credit below
+
+    int first[][] = new int[][]{
+            {0, 4, 0, 0, 0, 0, 0, 8, 0},
+            {4, 0, 8, 0, 0, 0, 0, 11, 0},
+            {0, 8, 0, 7, 0, 4, 0, 0, 2},
+            {0, 0, 7, 0, 9, 14, 0, 0, 0},
+            {0, 0, 0, 9, 0, 10, 0, 0, 0},
+            {0, 0, 4, 14, 10, 0, 2, 0, 0},
+            {0, 0, 0, 0, 0, 2, 0, 1, 6},
+            {8, 11, 0, 0, 0, 0, 1, 0, 7},
+            {0, 0, 2, 0, 0, 0, 6, 7, 0}
+    };
+
+    int freq[][] = new int[][]{
+            {0, 4, 0, 0, 0, 0, 0, 8, 0},
+            {4, 0, 8, 0, 0, 0, 0, 11, 0},
+            {0, 8, 0, 7, 0, 4, 0, 0, 2},
+            {0, 0, 7, 0, 9, 14, 0, 0, 0},
+            {0, 0, 0, 9, 0, 10, 0, 0, 0},
+            {0, 0, 4, 14, 10, 0, 2, 0, 0},
+            {0, 0, 0, 0, 0, 2, 0, 1, 6},
+            {8, 11, 0, 0, 0, 0, 1, 0, 7},
+            {0, 0, 2, 0, 0, 0, 6, 7, 0}
+    };
+    int freq1[][] = new int[][]{
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0, 0}
+    };
+    int freq2[][] = new int[][]{
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+
+    int start1[][] = new int[][]{
+            {0, 4, 0, 0, 0, 0, 0, 8, 0},
+            {0, 0, 8, 0, 0, 0, 0, 11, 0},
+            {0, 8, 0, 7, 0, 4, 0, 0, 2},
+            {0, 0, 7, 0, 9, 14, 0, 0, 0},
+            {0, 0, 0, 9, 0, 10, 0, 0, 0},
+            {0, 0, 4, 14, 10, 0, 2, 0, 0},
+            {0, 0, 0, 0, 0, 2, 0, 1, 6},
+            {0, 11, 0, 0, 0, 0, 1, 0, 7},
+            {0, 0, 2, 0, 0, 0, 6, 7, 0}
+    };
+
+    int square[][] = new int[][]{
+            {0,2,3,4},
+            {0,0,0,0},
+            {0,0,0,1},
+            {0,0,0,0}
+    };
+
+
+
+
+    // This if start all 0 and no frequency.
+    // As long as my start and freq all 0 I will return same as the other
+    System.out.println("Starting from source 0");
+    for (int i = 0; i < 8; i++) {
+
+      int shortestTravelTime = t.myShortestTravelTime(0, i, 0, lengthTimeGraph,freq1,freq1);
+      System.out.println("Shortest Travel " + i + ": " + shortestTravelTime + " minutes");
+    }
+
+
+
+    int start = 0;
+    int end = 8;
+    int shortestTravelTime = t.myShortestTravelTime(start, end, 0, lengthTimeGraph,start1,freq1);
+    System.out.println("Shortest Travel time  from 0 to 8 is : " + shortestTravelTime);
+
+    int shortestTravelTime1 = t.myShortestTravelTime(start, end, 0, lengthTimeGraph,lengthTimeGraph,freq2);
+    System.out.println("Shortest Travel time is : " + shortestTravelTime1);
+
+    int shortTravel = t.myShortestTravelTime(0,2,0,square,freq1,freq1);
+    System.out.println("Travel time "  + shortTravel);
   }
+
+
 }
